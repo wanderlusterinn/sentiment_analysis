@@ -1,6 +1,6 @@
 import pandas as pd
 
-file = r'C:\Users\Natalja\PycharmProjects\TwitterSquad\venv\tweetsAvengersEndgame.csv'
+file = "../data/tweetsAvengersEndgame.csv"
 
 df = pd.read_csv(file, sep=";",encoding = "ISO-8859-1")
 
