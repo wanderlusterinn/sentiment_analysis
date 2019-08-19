@@ -1,4 +1,7 @@
 import pandas as pd
+import re
+import csv
+import preprocessor as p
 
 # determine the path for the data
 file = "../data/result_nike_betsyross.csv"
@@ -31,8 +34,18 @@ new_df.dropna(inplace = True)
 # b' or b".
 
 # new data frame with split value columns
-new = new_df["tweet"].str.split("b\'|b\"", n = 1, expand = True)
-# making separate tweet column
+
+new = new_df["tweet"].str.split("b\'|b\"", n=1, expand=True)
 new_df["tweet"] = new[1]
 
+
+new = new_df["tweet"].str.split("RT\s@+[a-zA-z]+:", n=1, expand=True)
+new_df["tweet"] = new[1]
+new_df["rest"] = new[0]
 print(new_df)
+
+
+tweet_col = new_df["rest"] + new_df["tweet"]
+print(tweet_col)
+
+
