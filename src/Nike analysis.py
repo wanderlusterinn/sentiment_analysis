@@ -4,7 +4,8 @@ import re
 import nltk
 #nltk.download()
 from sklearn.feature_extraction.text import CountVectorizer
-
+#import seaborn as sns
+import matplotlib.pyplot as plt
 
 # file = '../data/tweetsAvengersEndgame.csv'
 file = "../data/result_nike_betsyross.csv"
@@ -110,4 +111,11 @@ df_important_words = count_vect_df[important_words.index]
 #Wordcloud Visualization
 from wordcloud import WordCloud, STOPWORDS , ImageColorGenerator
 
+tweet_All = " ".join(review for review in df_important_words)
+fig, ax = plt.subplots(3, 1, figsize  = (30,30))
+# Create and generate a word cloud image:
+wordcloud = WordCloud(max_font_size=50, max_words=100, background_color="white").generate(tweet_All)
 
+ax[0].imshow(wordcloud, interpolation='bilinear')
+ax[0].set_title('All Tweets', fontsize=30)
+ax[0].axis('off')
